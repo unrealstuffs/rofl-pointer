@@ -25,10 +25,12 @@ export default function App() {
 		: { background: "none" }
 
 	return (
-		<div ref={rootRef} className='app' style={backgroundStyle}>
-			<Hints />
-			<Controls />
-			<Cursor />
+		<div ref={rootRef} className='app-container'>
+			<div className='app' style={backgroundStyle}>
+				<Hints />
+				<Controls />
+				<Cursor />
+			</div>
 		</div>
 	)
 }

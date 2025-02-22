@@ -60,7 +60,10 @@ p {
 	font-weight: normal;
 }
 
+.app-container {
+	background-color: vars.$bg-main;
+}
+
 .app {
 	height: 100vh;
-	background-size: cover;
 }
