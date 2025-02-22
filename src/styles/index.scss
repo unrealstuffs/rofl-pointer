@@ -1,0 +1,66 @@
+@use "./vars" as vars;
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	cursor: none;
+	user-select: none;
+}
+
+body {
+	min-width: 320px;
+	height: 100vh;
+	overflow: hidden;
+	line-height: 1.5;
+	font-family: sans-serif;
+	-webkit-font-smoothing: antialiased;
+	background-color: vars.$bg-main;
+}
+
+/* Убираем стили у списков */
+ul,
+ol {
+	list-style: none;
+}
+
+/* Убираем стили у ссылок */
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+/* Убираем обводку у кнопок и инпутов в фокусе */
+button,
+input,
+textarea,
+select {
+	outline: none;
+	border: none;
+	background: none;
+	font: inherit;
+	cursor: none;
+}
+
+/* Сделаем изображения адаптивными */
+img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+/* Нормализуем блочные элементы */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+	font-weight: normal;
+}
+
+.app {
+	height: 100vh;
+	background-size: cover;
+}
