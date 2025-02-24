@@ -4,7 +4,7 @@ export const useStore = create(set => ({
 	cursorSize: 100,
 	bgImage: null,
 	bgPosition: { x: 0, y: 0 },
-	bgScale: 1,
+	bgScale: 0.5,
 	fullscreenRef: null,
 	isReflect: true,
 	isDrag: false,

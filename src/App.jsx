@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react"
+import Cursor from "./components/Cursor/Cursor"
 import Controls from "./components/Controls/Controls"
-import Cursor from "./components/Cursor_exp/Cursor"
-import Hints from "./components/Hints/Hints"
 import { useStore } from "./store/store"
 
 export default function App() {
@@ -27,7 +26,6 @@ export default function App() {
 	return (
 		<div ref={rootRef} className='app-container'>
 			<div className='app' style={backgroundStyle}>
-				<Hints />
 				<Controls />
 				<Cursor />
 			</div>

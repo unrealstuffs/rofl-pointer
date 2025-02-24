@@ -1,9 +1,9 @@
 @use "sass:color";
 @use "../../styles/vars" as vars;
 
-.hints {
+.controls {
 	position: absolute;
-	right: 5%;
+	right: 3%;
 	top: 10%;
 	background-color: vars.$bg;
 	padding: 12px;
@@ -18,7 +18,8 @@
 		justify-content: flex-end;
 		button {
 			background-color: vars.$secondary;
-			padding: 8px;
+			padding: 12px;
+			border-radius: 4px;
 			img {
 				width: 24px;
 				height: 24px;
@@ -33,18 +34,24 @@
 				background-color: vars.$primary;
 			}
 		}
+
+		input[type="file"] {
+			display: none;
+		}
 	}
 }
 
 .range {
+	margin-bottom: 24px;
 	p {
 		font-size: 14px;
+		margin-top: 4px;
 	}
 	input {
 		-webkit-appearance: none;
 		width: 100%;
 		height: 8px;
-		border-radius: 5px;
+		border-radius: 4px;
 		background: vars.$secondary;
 		outline: none;
 		opacity: 0.7;
@@ -58,8 +65,8 @@
 		&::-webkit-slider-thumb {
 			-webkit-appearance: none;
 			appearance: none;
-			width: 16px;
-			height: 16px;
+			width: 20px;
+			height: 20px;
 			border-radius: 50%;
 			background: vars.$primary;
 		}
@@ -71,4 +78,19 @@
 			background: vars.$primary;
 		}
 	}
+}
+
+.hints {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	column-gap: 20px;
+	row-gap: 4px;
+	margin-bottom: 24px;
+	p {
+		font-size: 14px;
+	}
+}
+
+.version {
+	font-size: 14px;
 }

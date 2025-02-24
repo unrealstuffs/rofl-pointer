@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { useStore } from "../../store/store"
 import cursorImage from "../../assets/default.png"
-import cursorReversedImage from "../../assets/default_reverse.png"
 import clickSound from "../../assets/tuck.wav"
 import soundLoop from "../../assets/ebuchaya_ukazka.wav"
 import cls from "./Cursor.module.scss"
@@ -14,11 +13,9 @@ export default function Cursor() {
 	const bgScale = useStore(state => state.bgScale)
 	const setBgScale = useStore(state => state.setBgScale)
 	const isReflect = useStore(state => state.isReflect)
-	const isDrag = useStore(state => state.isDrag)
 
 	const [dragStart, setDragStart] = useState({ x: 0, y: 0 })
 	const [initialBgPosition, setInitialBgPosition] = useState(bgPosition)
-	const [isCursorReversed, setIsCursorReversed] = useState(false)
 	const [rotation, setRotation] = useState(0)
 	const [mouseDown, setMouseDown] = useState(false)
 
@@ -32,16 +29,12 @@ export default function Cursor() {
 
 	useEffect(() => {
 		const rotateCursor = () => {
-			if (isCursorReversed) {
-				setRotation(-10)
-			} else {
-				setRotation(10)
-			}
+			setRotation(10)
 		}
 
 		const updateCursor = e => {
 			setPosition({ x: e.clientX, y: e.clientY })
-			if (mouseDown && isDrag) {
+			if (mouseDown) {
 				const dx = e.clientX - dragStart.x
 				const dy = e.clientY - dragStart.y
 				setBgPosition({ x: initialBgPosition.x + dx, y: initialBgPosition.y + dy })
@@ -52,18 +45,16 @@ export default function Cursor() {
 			if (e.button === 0) {
 				const audio = new Audio(clickSound)
 				audio.play()
-				setMouseDown(true)
-				if (isDrag) {
-					setDragStart({ x: e.clientX, y: e.clientY })
-					setInitialBgPosition(bgPosition)
-				}
+
 				rotateCursor()
 				if (loopAudioRef.current) {
 					loopAudioRef.current.play()
 				}
 			}
 			if (e.button === 2) {
-				setIsCursorReversed(prev => !prev)
+				setMouseDown(true)
+				setDragStart({ x: e.clientX, y: e.clientY })
+				setInitialBgPosition(bgPosition)
 			}
 		}
 
@@ -92,7 +83,7 @@ export default function Cursor() {
 			document.removeEventListener("mouseup", handleMouseUp)
 			document.removeEventListener("contextmenu", handleContextMenu)
 		}
-	}, [mouseDown, isDrag, dragStart, initialBgPosition, setBgPosition, bgPosition, isCursorReversed])
+	}, [mouseDown, dragStart, initialBgPosition, setBgPosition, bgPosition])
 
 	useEffect(() => {
 		const handleWheel = e => {
@@ -130,7 +121,7 @@ export default function Cursor() {
 			style={{
 				left: isReflect ? position.x - 6 : position.x - cursorSize + 6,
 				top: position.y,
-				backgroundImage: `url(${isCursorReversed ? cursorReversedImage : cursorImage})`,
+				backgroundImage: `url(${cursorImage})`,
 				width: `${cursorSize}px`,
 				height: `${cursorSize * 1.361}px`,
 				transform: `${isReflect ? "scaleX(-1)" : ""} rotate(${rotation}deg)`,

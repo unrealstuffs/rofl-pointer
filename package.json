@@ -1,7 +1,7 @@
 {
 	"name": "rofl-pointer",
 	"private": true,
-	"version": "0.0.0",
+	"version": "1.1.0",
 	"type": "module",
 	"homepage": "https://unrealstuffs.github.io/rofl-pointer",
 	"scripts": {
